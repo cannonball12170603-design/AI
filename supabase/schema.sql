@@ -42,11 +42,17 @@ alter table monthly_entries enable row level security;
 alter table investment_entries enable row level security;
 alter table special_expenses enable row level security;
 
+drop policy if exists "select own monthly_entries" on monthly_entries;
 create policy "select own monthly_entries" on monthly_entries for select using (auth.uid() = user_id);
+drop policy if exists "modify own monthly_entries" on monthly_entries;
 create policy "modify own monthly_entries" on monthly_entries for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 
+drop policy if exists "select own investment_entries" on investment_entries;
 create policy "select own investment_entries" on investment_entries for select using (auth.uid() = user_id);
+drop policy if exists "modify own investment_entries" on investment_entries;
 create policy "modify own investment_entries" on investment_entries for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 
+drop policy if exists "select own special_expenses" on special_expenses;
 create policy "select own special_expenses" on special_expenses for select using (auth.uid() = user_id);
+drop policy if exists "modify own special_expenses" on special_expenses;
 create policy "modify own special_expenses" on special_expenses for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
