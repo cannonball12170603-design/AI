@@ -1,0 +1,143 @@
+:root {
+  font: 16px/1.5 system-ui, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: light dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 18px;
+  margin: 16px 0 8px;
+}
+
+h3 {
+  font-size: 15px;
+  margin: 16px 0 4px;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+.app-nav {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  overflow-x: auto;
+}
+
+.app-nav a {
+  flex: 1;
+  text-align: center;
+  padding: 10px 8px;
+  text-decoration: none;
+  color: inherit;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.app-nav a.active {
+  font-weight: bold;
+  border-bottom: 2px solid #1976d2;
+}
+
+main {
+  flex: 1;
+  padding: 16px;
+  overflow-x: auto;
+}
+
+.page table {
+  width: 100%;
+}
+
+.entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.entry-form input,
+.entry-form select,
+.entry-form button {
+  padding: 8px;
+  font-size: 14px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.data-table th,
+.data-table td {
+  border-bottom: 1px solid #eee;
+  padding: 6px 4px;
+  text-align: left;
+}
+
+.auth-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100svh;
+  padding: 16px;
+  gap: 12px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.auth-form input,
+.auth-form button {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #1976d2;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.error {
+  color: #c62828;
+  font-size: 13px;
+}
