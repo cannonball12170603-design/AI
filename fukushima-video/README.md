@@ -19,19 +19,20 @@
 
 - [x] 台本作成（`script.md`）
 - [x] カット割り／絵コンテ作成（`storyboard.md`）
-- [ ] Higgsfieldでの名所風景素材生成（画像・動画）
-- [ ] 各カットの映像素材生成
-- [ ] 素材の書き出し・編集用まとめ
+- [x] Higgsfieldでの名所風景素材生成（7カット分、`generate_video`／kling3_0_turbo）
+- [ ] 素材のダウンロード・編集ソフトへの取り込み（`assets/README.md` 参照）
+- [ ] ナレーション音声の収録・合成
+- [ ] 編集・書き出し
 
-## 次のステップ（Higgsfield連携）
+## 次のステップ
 
-1. `storyboard.md` の各カットのプロンプトを元に、名所の風景映像を `generate_video`（text-to-video）で生成
-2. 生成した素材を `assets/` 配下にカットNo.ごとに整理
-3. 必要に応じて `upscale_video` / `reframe` などで縦型9:16に最終調整
-4. ナレーションは別途TTSまたは収録音声を編集時に合成
+1. `assets/README.md` に記載のURLから各カットの動画をダウンロード
+2. 動画編集ソフトに取り込み、`storyboard.md` のカット割りに沿って編集
+3. 必要に応じて `upscale_video` / `reframe` で画質・アスペクト比を最終調整
+4. ナレーションを別途TTSまたは収録音声で合成し、BGMと共にミックス
 
 ## ファイル構成
 
 - `script.md` … ナレーション・セリフの決定稿
-- `storyboard.md` … カット割り表（秒数・画角・演技・テロップ・Higgsfield生成メモ）
-- `assets/` … 生成素材の格納先（今後追加）
+- `storyboard.md` … カット割り表（秒数・画角・テロップ・Higgsfield生成メモ）
+- `assets/README.md` … Higgsfieldで生成した各カットの動画URLとメタデータ一覧
