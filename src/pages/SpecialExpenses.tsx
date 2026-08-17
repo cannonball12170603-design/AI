@@ -1,6 +1,8 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../lib/useAuth'
+import { parseSpokenAmount } from '../lib/parseSpokenAmount'
+import VoiceInputButton from '../components/VoiceInputButton'
 import type { SpecialExpense } from '../lib/types'
 
 export default function SpecialExpenses() {
@@ -49,9 +51,18 @@ export default function SpecialExpenses() {
       <h2>特別出費（買い物明細）</h2>
       <form onSubmit={handleSubmit} className="entry-form">
         <input type="date" value={expenseDate} onChange={(e) => setExpenseDate(e.target.value)} required />
-        <input placeholder="購入先・品物" value={item} onChange={(e) => setItem(e.target.value)} required />
-        <input type="number" placeholder="金額" value={amount} onChange={(e) => setAmount(e.target.value)} required />
-        <input placeholder="メモ（任意）" value={memo} onChange={(e) => setMemo(e.target.value)} />
+        <div className="mic-field">
+          <input placeholder="購入先・品物" value={item} onChange={(e) => setItem(e.target.value)} required />
+          <VoiceInputButton onTranscript={(text) => setItem(text)} ariaLabel="購入先・品物を音声入力" />
+        </div>
+        <div className="mic-field">
+          <input type="number" placeholder="金額" value={amount} onChange={(e) => setAmount(e.target.value)} required />
+          <VoiceInputButton onTranscript={(text) => setAmount(parseSpokenAmount(text))} ariaLabel="金額を音声入力" />
+        </div>
+        <div className="mic-field">
+          <input placeholder="メモ（任意）" value={memo} onChange={(e) => setMemo(e.target.value)} />
+          <VoiceInputButton onTranscript={(text) => setMemo(text)} ariaLabel="メモを音声入力" />
+        </div>
         <button type="submit">追加</button>
       </form>
 

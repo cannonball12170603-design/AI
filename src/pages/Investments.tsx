@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState, type FormEvent } from 'react'
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend } from 'recharts'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../lib/useAuth'
+import { parseSpokenAmount } from '../lib/parseSpokenAmount'
+import VoiceInputButton from '../components/VoiceInputButton'
 import type { InvestmentEntry } from '../lib/types'
 
 export default function Investments() {
@@ -61,10 +63,25 @@ export default function Investments() {
     <div className="page">
       <h2>投資管理</h2>
       <form onSubmit={handleSubmit} className="entry-form">
-        <input placeholder="口座名（例: NISA成長投資枠）" value={account} onChange={(e) => setAccount(e.target.value)} required />
+        <div className="mic-field">
+          <input placeholder="口座名（例: NISA成長投資枠）" value={account} onChange={(e) => setAccount(e.target.value)} required />
+          <VoiceInputButton onTranscript={(text) => setAccount(text)} ariaLabel="口座名を音声入力" />
+        </div>
         <input type="date" value={entryDate} onChange={(e) => setEntryDate(e.target.value)} required />
-        <input type="number" placeholder="積立金額（累計）" value={contribution} onChange={(e) => setContribution(e.target.value)} required />
-        <input type="number" placeholder="評価額（任意）" value={valuation} onChange={(e) => setValuation(e.target.value)} />
+        <div className="mic-field">
+          <input
+            type="number"
+            placeholder="積立金額（累計）"
+            value={contribution}
+            onChange={(e) => setContribution(e.target.value)}
+            required
+          />
+          <VoiceInputButton onTranscript={(text) => setContribution(parseSpokenAmount(text))} ariaLabel="積立金額を音声入力" />
+        </div>
+        <div className="mic-field">
+          <input type="number" placeholder="評価額（任意）" value={valuation} onChange={(e) => setValuation(e.target.value)} />
+          <VoiceInputButton onTranscript={(text) => setValuation(parseSpokenAmount(text))} ariaLabel="評価額を音声入力" />
+        </div>
         <button type="submit">追加</button>
       </form>
 

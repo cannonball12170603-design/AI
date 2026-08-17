@@ -1,6 +1,8 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../lib/useAuth'
+import { parseSpokenAmount } from '../lib/parseSpokenAmount'
+import VoiceInputButton from '../components/VoiceInputButton'
 import type { MonthlyEntry } from '../lib/types'
 
 export default function MonthlyEntries() {
@@ -46,12 +48,18 @@ export default function MonthlyEntries() {
       <h2>収支入力</h2>
       <form onSubmit={handleSubmit} className="entry-form">
         <input type="month" value={yearMonth} onChange={(e) => setYearMonth(e.target.value)} required />
-        <input placeholder="項目（例: 給料, 電気代）" value={category} onChange={(e) => setCategory(e.target.value)} required />
+        <div className="mic-field">
+          <input placeholder="項目（例: 給料, 電気代）" value={category} onChange={(e) => setCategory(e.target.value)} required />
+          <VoiceInputButton onTranscript={(text) => setCategory(text)} ariaLabel="項目を音声入力" />
+        </div>
         <select value={kind} onChange={(e) => setKind(e.target.value as 'income' | 'expense')}>
           <option value="income">収入</option>
           <option value="expense">支出</option>
         </select>
-        <input type="number" placeholder="金額" value={amount} onChange={(e) => setAmount(e.target.value)} required />
+        <div className="mic-field">
+          <input type="number" placeholder="金額" value={amount} onChange={(e) => setAmount(e.target.value)} required />
+          <VoiceInputButton onTranscript={(text) => setAmount(parseSpokenAmount(text))} ariaLabel="金額を音声入力" />
+        </div>
         <button type="submit">追加</button>
       </form>
 

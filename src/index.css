@@ -93,6 +93,41 @@ main {
   font-size: 14px;
 }
 
+.mic-field {
+  display: flex;
+  gap: 6px;
+}
+
+.mic-field input {
+  flex: 1;
+  min-width: 0;
+}
+
+.mic-btn {
+  flex-shrink: 0;
+  width: 40px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.mic-btn--active {
+  background: #ffebee;
+  border-color: #e53935;
+  animation: mic-pulse 1s infinite;
+}
+
+@keyframes mic-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
 .data-table {
   width: 100%;
   border-collapse: collapse;
